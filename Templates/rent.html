@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Rent a Car</h2>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    <form method="POST">
+        <label for="car_id">Car ID:</label>
+        <input type="number" id="car_id" name="car_id" required>
+        
+        <button type="submit">Rent Car</button>
+    </form>
+    
+    <h3>Available Cars</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+        </tr>
+        {% for id, car in cars.items() if car[3] == "Available" %}
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ car[0] }}</td>
+            <td>{{ car[1] }}</td>
+            <td>{{ car[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
