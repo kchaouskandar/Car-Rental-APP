@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Available Cars</h2>
+    {% if cars %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Status</th>
+            </tr>
+            {% for id, car in cars.items() %}
+            <tr>
+                <td>{{ id }}</td>
+                <td>{{ car[0] }}</td>
+                <td>{{ car[1] }}</td>
+                <td>{{ car[2] }}</td>
+                <td class="{{ 'available' if car[3] == 'Available' else 'rented' }}">{{ car[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No cars available in the system.</p>
+    {% endif %}
+{% endblock %}
